@@ -1,36 +1,71 @@
-NAME		= so_long
+NAME		=	so_long
 
-MAKE_LFT	= make all -C libft
+CC			=	clang
 
-MAKE_MLX	= make all -C minilibx
+FLAG		=	-Wall -Wextra -Werror
 
-CLEAN_LFT	= make clean -C libft
+LIBFT_PATH	=	./libft/
 
-CLEAN_MLX	= make clean -C minilibx
+LIBFT_FILE	=	libft.a
 
-FCLEAN_LFT	= make fclean -C libft
+MLX_FILE	=	libmlx.a
 
-FCLEAN_MLX	= make fclean -C minilibx
+LIBFT_LIB	=	$(addprefix $(LIBFT_PATH), $(LIBFT_FILE))
 
-CC			= cc
+MLX_FLAG	=	-lX11 -lXext
 
-CFLAGS		= -Wall -Wextra -Werror 
+MLX_PATH	=	./minilibx/
 
-CPARAMS		= -I include -L libft -L minilibx -l ft -l mlx
+MLX_LIB		=	$(addprefix $(MLX_PATH), $(MLX_FILE))
 
-SRCS		= src/main.c
+MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
-all			: $(NAME)
+C_FILE		=	main.c
 
-$(NAME)		:
-	$(MAKE_LFT) && $(MAKE_MLX)
-	$(CC) $(CFLAGS) $(CPARAMS) $(SRCS) -o $(NAME)
+SRC_DIR		=	./src/
 
-clean		:
-	$(CLEAN_LFT) && $(CLEAN_MLX)
+INC_DIR		=	./includes/
 
-fclean		: clean
-	$(FCLEAN_LFT) && $(FCLEAN_MLX)
-	rm -f $(NAME)
+SRC			=	$(addprefix $(SRC_DIR),$(C_FILE))
 
-re			: fclean all
+OBJ			=	$(SRC:.c=.o)
+
+.c.o:
+	$(CC) $(FLAG) -c $< -o $@
+
+all: $(NAME)
+
+lib:
+	@echo "\033[0;33m\nCOMPILING $(LIBFT_PATH)\n"
+	@make -C $(LIBFT_PATH)
+	@echo "\033[1;32mLIBFT_lib created\n"
+
+mlx:
+	@echo "\033[0;33m\nCOMPILING $(MLX_PATH)...\n"
+	@make -sC $(MLX_PATH)
+	@echo "\033[1;32mMLX_lib created\n"
+
+$(NAME): lib mlx $(OBJ)
+	@echo "\033[0;33m\nCOMPILING SO_LONG...\n"
+	$(CC) $(OBJ) $(LIBFT_LIB) $(MLX_EX) -o $(NAME)
+	@echo "\033[1;32m./so_long created\n"
+
+clean:
+	@echo "\033[0;31mDeleting Obj file in $(MLX_PATH)...\n"
+	@make clean -sC $(MLX_PATH)
+	@echo "\033[0;31mDeleting Obj file in $(LIBFT_PATH)...\n"
+	@make clean -sC $(LIBFT_PATH)
+	@echo "\033[1;32mDone\n"
+	@echo "\033[0;31mDeleting So_long object...\n"
+	@rm -f $(OBJ)
+	@echo "\033[1;32mDone\n"
+
+fclean: clean
+	@echo "\033[0;31mDeleting so_long executable..."
+	@rm -f $(NAME)
+	@make fclean -C $(LIBFT_PATH)
+	@echo "\033[1;32mDone\n"
+
+re: fclean all
+
+.PHONY: all clean fclean re
