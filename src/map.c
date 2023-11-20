@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:31:41 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/20 20:42:36 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/20 20:51:10 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	count(int x, int y, t_map *map, char block)
 	int	u;
 	int	d;
 	
-	if (pos.x < 0 || pos.x >= map->size.x
-		|| pos.y < 0 || pos.y >= map->size.y)
+	if (x < 0 || x >= map->size.x
+		|| y < 0 || y >= map->size.y)
 		return (0);
 	if (map->data[y][x] == '1' || map->buff[y][x] == '1')
 		return (0);
@@ -114,9 +114,10 @@ t_map	init_map(char *file)
 	map.data = malloc(sizeof(char *) * (y + 1));
 	map.buff = malloc(sizeof(char *) * (y + 1));
 	map.size.y = y;
+	y = 0;
 	while (y-- >= 0)
 	{
-		map.data = get_next_line(fd);
+		map.data[] = get_next_line(fd);
 		map.buff = ft_strcpy(map.data);
 		if (map.data && ft_strlen(map.data) > x)
 			x = ft_strlen(map.data);

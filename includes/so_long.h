@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 19:21:35 by asimon            #+#    #+#             */
-/*   Updated: 2023/11/20 20:17:33 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/20 20:45:45 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ typedef struct	s_map
 	t_vec2	size;
 	char	**data;
 	char	**buff;
-	bool	valid;
+	char	valid;
 }	t_map;
 
-typedef struct	t_game
+typedef struct	s_game
 {
 	void	*mlx;
 	void	*win;
 	t_vec2	size;
 	t_map	map;
-}	s_game;
+}	t_game;
 
 /*	GAME.C		*/
 void	init_game(t_game *game);

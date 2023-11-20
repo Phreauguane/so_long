@@ -1,7 +1,5 @@
 NAME		=	so_long
 
-CC			=	clang
-
 FLAG		=	-Wall -Wextra -Werror
 
 LIBFT_PATH	=	./libft/
@@ -50,7 +48,7 @@ mlx:
 
 $(NAME): lib mlx $(OBJ)
 	@echo "\033[0;33m\nCOMPILING SO_LONG...\n"
-	$(CC) $(OBJ) $(LIBFT_LIB) $(MLX_EX) -o $(NAME)
+	@cc $(OBJ) $(LIBFT_LIB) $(MLX_EX) -o $(NAME)
 	@echo "\033[1;32m./so_long created\n"
 
 clean:
