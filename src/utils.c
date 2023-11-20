@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 18:39:43 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/20 19:22:52 by jde-meo          ###   ########.fr       */
+/*   Created: 2023/11/20 19:43:58 by jde-meo           #+#    #+#             */
+/*   Updated: 2023/11/20 20:16:52 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int main(void)
+int	min(int x, int y)
 {
-	void *mlx_ptr;
-	void *win_ptr;
- 
-	mlx_ptr = mlx_init();
-	if (!mlx_ptr)
-		return (1);
-	win_ptr = mlx_new_window(mlx_ptr, 600, 400, "hi :)");
-	if (!win_ptr)
-		return (free(mlx_ptr), 1);
-	mlx_destroy_window(mlx_ptr, win_ptr);
-	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
-	return (0);
+	if (x < y)
+		return (x);
+	return (y);
+}
+
+int	max(int x, int y)
+{
+	if (x > y)
+		return (x);
+	return (y);
+}
+
+void	exit_handler(char *msg, char *info)
+{
+	ft_putstr_fd("Error: ", 2);
+	if (info)
+	{
+		ft_putstr_fd(msg, 2);
+		ft_putstr_fd(": ", 2);
+		ft_putendl_fd(info, 2);
+	}
+	else
+		ft_putendl_fd(msg, 2);
+	exit(-1);
 }

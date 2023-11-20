@@ -20,7 +20,10 @@ MLX_LIB		=	$(addprefix $(MLX_PATH), $(MLX_FILE))
 
 MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
-C_FILE		=	main.c
+C_FILE		=	main.c	\
+				game.c	\
+				map.c	\
+				utils.c
 
 SRC_DIR		=	./src/
 
