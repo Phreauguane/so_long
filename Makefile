@@ -18,9 +18,10 @@ MLX_LIB		=	$(addprefix $(MLX_PATH), $(MLX_FILE))
 
 MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
-C_FILE		=	main.c	\
-				game.c	\
-				map.c	\
+C_FILE		=	main.c		\
+				game.c		\
+				map.c		\
+				verif_map.c	\
 				utils.c
 
 SRC_DIR		=	./src/
@@ -40,6 +41,11 @@ lib:
 	@echo "\033[0;33m\nCOMPILING $(LIBFT_PATH)"
 	@make -C $(LIBFT_PATH)
 	@echo "\033[1;32m$(LIBFT_FILE) created"
+
+valgrind: lib mlx $(OBJ)
+	@echo "\033[0;33m\nCOMPILING SO_LONG..."
+	@cc -g3 $(OBJ) $(LIBFT_LIB) $(MLX_EX) -o $(NAME)
+	@echo "\033[1;32m$(NAME) executable created"
 
 mlx:
 	@echo "\033[0;33m\nCOMPILING $(MLX_PATH)..."

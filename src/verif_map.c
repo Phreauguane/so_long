@@ -6,25 +6,25 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:25 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/21 11:14:59 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/21 12:26:48 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inclues/so_long.h"
+#include "../includes/so_long.h"
 
 
-t_vec2	get_pos(char **tab, char c)
+t_vec2	get_pos(t_map map, char c)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (tab[i])
+	while (i < map.size.y)
 	{
-		while (tab[i][j])
+		while (j < map.size.x)
 		{
-			if (tab[i][j] == c)
+			if (map.data[i][j] == c)
 				return ((t_vec2){j, i});
 			j++;
 		}
@@ -33,7 +33,7 @@ t_vec2	get_pos(char **tab, char c)
 	return ((t_vec2){-1, -1});
 }
 
-int	count_char(char **tab, char c)
+int	count_char(t_map map, char c)
 {
 	int	out;
 	int	i;
@@ -42,11 +42,11 @@ int	count_char(char **tab, char c)
 	i = 0;
 	j = 0;
 	out = 0;
-	while (tab[i])
+	while (i < map.size.y)
 	{
-		while (tab[i][j])
+		while (j < map.size.x)
 		{
-			if (tab[i][j] == c)
+			if (map.data[i][j] == c)
 				out++;
 			j++;
 		}
@@ -84,18 +84,23 @@ void	verif_map(t_map *map)
 	int		spawn;
 	t_vec2	spos;
 
+	print_map(*map);
+	map->valid = 1;
 	if (map->size.x < 1 || map->size.y < 1)
 		exit_handler("Invalid map", NULL);
-	collectibles = count_char(map->data, 'C');
-	spawn = count_char(map->data, 'P');
-	end = count_char(map->data, 'E');
+	collectibles = count_char(*map, 'C');
+	spawn = count_char(*map, 'P');
+	end = count_char(*map, 'E');
 	if (collectibles == 0 || spawn != 1 || end != 1)
 		map->valid = 0;
-	spos = get_pos(map->data, 'P');
+	ft_printf("Found %d collectibles, %d spawns, %d ends\n", collectibles, spawn, end);
+	spos = get_pos(*map, 'P');
 	if (spos.x < 0)
 		return ;
 	if (collectibles != count(spos.x, spos.y, map, 'C'))
 		map->valid = 0;
+	ft_printf("%d collectibles can be collected\n", count(spos.x, spos.y, map, 'C'));
 	if (end != count(spos.x, spos.y, map, 'E'))
 		map->valid = 0;
+	ft_printf("%d can find end\n", count(spos.x, spos.y, map, 'E'));
 }

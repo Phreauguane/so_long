@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/21 11:09:41 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/21 12:15:46 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int on_destroy(t_game *game)
 {
+	ft_free_split(game->map.data);
+	ft_free_split(game->map.buff);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
@@ -24,13 +26,17 @@ int on_destroy(t_game *game)
 int on_keypress(int keysym, t_game *game)
 {
 	(void)game;
-	printf("Pressed key: %d\\n", keysym);
+	ft_printf("Pressed key: %d\n", keysym);
 	return (0);
 }
 
 void	init_game(t_game *game, char *file)
 {
+	(void)file;
 	game->map = init_map(file);
+	//print_map(game->map);
+	if (!game->map.valid)
+		exit_handler("Map is invalid", NULL);
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		exit_handler("mlx_init() returned NULL", NULL);

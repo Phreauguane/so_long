@@ -6,25 +6,17 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:39:43 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/20 19:22:52 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/21 11:52:07 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int main(void)
+int main(int ac, char **av)
 {
-	void *mlx_ptr;
-	void *win_ptr;
- 
-	mlx_ptr = mlx_init();
-	if (!mlx_ptr)
-		return (1);
-	win_ptr = mlx_new_window(mlx_ptr, 600, 400, "hi :)");
-	if (!win_ptr)
-		return (free(mlx_ptr), 1);
-	mlx_destroy_window(mlx_ptr, win_ptr);
-	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
+	if (ac != 2)
+		exit_handler("Wrong arguments", NULL);
+	t_game game;
+	init_game(&game, av[1]);
 	return (0);
 }
