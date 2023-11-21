@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/20 20:48:59 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/21 11:09:41 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ int on_keypress(int keysym, t_game *game)
 	return (0);
 }
 
-void	init_game(t_game *game)
+void	init_game(t_game *game, char *file)
 {
+	game->map = init_map(file);
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		exit_handler("mlx_init() returned NULL", NULL);

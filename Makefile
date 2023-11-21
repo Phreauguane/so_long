@@ -32,40 +32,40 @@ SRC			=	$(addprefix $(SRC_DIR),$(C_FILE))
 OBJ			=	$(SRC:.c=.o)
 
 .c.o:
-	$(CC) $(FLAG) -c $< -o $@
+	@$(CC) $(FLAG) -c $< -o $@
 
 all: $(NAME)
 
 lib:
-	@echo "\033[0;33m\nCOMPILING $(LIBFT_PATH)\n"
+	@echo "\033[0;33m\nCOMPILING $(LIBFT_PATH)"
 	@make -C $(LIBFT_PATH)
-	@echo "\033[1;32mLIBFT_lib created\n"
+	@echo "\033[1;32m$(LIBFT_FILE) created"
 
 mlx:
-	@echo "\033[0;33m\nCOMPILING $(MLX_PATH)...\n"
+	@echo "\033[0;33m\nCOMPILING $(MLX_PATH)..."
 	@make -sC $(MLX_PATH)
-	@echo "\033[1;32mMLX_lib created\n"
+	@echo "\033[1;32m$(MLX_FILE) created"
 
 $(NAME): lib mlx $(OBJ)
-	@echo "\033[0;33m\nCOMPILING SO_LONG...\n"
+	@echo "\033[0;33m\nCOMPILING SO_LONG..."
 	@cc $(OBJ) $(LIBFT_LIB) $(MLX_EX) -o $(NAME)
-	@echo "\033[1;32m./so_long created\n"
+	@echo "\033[1;32m$(NAME) executable created"
 
 clean:
-	@echo "\033[0;31mDeleting Obj file in $(MLX_PATH)...\n"
+	@echo "\033[0;31mDeleting Obj file in $(MLX_PATH)..."
 	@make clean -sC $(MLX_PATH)
-	@echo "\033[0;31mDeleting Obj file in $(LIBFT_PATH)...\n"
+	@echo "\033[0;31mDeleting Obj file in $(LIBFT_PATH)..."
 	@make clean -sC $(LIBFT_PATH)
-	@echo "\033[1;32mDone\n"
-	@echo "\033[0;31mDeleting So_long object...\n"
+	@echo "\033[1;32mDone"
+	@echo "\033[0;31mDeleting Obj file in ./src/..."
 	@rm -f $(OBJ)
-	@echo "\033[1;32mDone\n"
+	@echo "\033[1;32mDone"
 
 fclean: clean
 	@echo "\033[0;31mDeleting so_long executable..."
 	@rm -f $(NAME)
 	@make fclean -C $(LIBFT_PATH)
-	@echo "\033[1;32mDone\n"
+	@echo "\033[1;32mDone"
 
 re: fclean all
 

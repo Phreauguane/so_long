@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 19:21:35 by asimon            #+#    #+#             */
-/*   Updated: 2023/11/20 20:45:45 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/21 11:13:00 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,16 @@ typedef struct	s_game
 	t_map	map;
 }	t_game;
 
-/*	GAME.C		*/
+/*	GAME.C			*/
 void	init_game(t_game *game);
 
-/*	UTILS.c		*/
+/*	MAP.C			*/
+t_map	init_map(char *file);
+
+/*	VERIF_MAP.C		*/
+void	verif_map(t_map *map);
+
+/*	UTILS.c			*/
 int		min(int x, int y);
 int		max(int x, int y);
 void	exit_handler(char *msg, char *info);
