@@ -6,12 +6,11 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:25 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/22 11:55:57 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/22 12:03:54 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
 
 t_vec2	get_pos(t_map map, char c)
 {
@@ -63,7 +62,7 @@ int	count(int x, int y, t_map *map, char block)
 	int	l;
 	int	u;
 	int	d;
-	
+
 	if (x < 0 || x >= map->size.x
 		|| y < 0 || y >= map->size.y)
 		return (0);

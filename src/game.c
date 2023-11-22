@@ -6,13 +6,13 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/22 11:55:46 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/22 12:02:14 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int on_destroy(t_game *game)
+int	on_destroy(t_game *game)
 {
 	ft_free_split(game->map.data);
 	ft_free_split(game->map.buff);
@@ -23,7 +23,7 @@ int on_destroy(t_game *game)
 	return (0);
 }
 
-int on_keypress(int keysym, t_game *game)
+int	on_keypress(int keysym, t_game *game)
 {
 	(void)game;
 	ft_printf("Pressed key: %d\n", keysym);
@@ -39,7 +39,7 @@ void	init_game(t_game *game, char *file)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		exit_handler("mlx_init() returned NULL", NULL);
-	game->win = mlx_new_window(game->mlx, 600, 400, "sooooooooo_looooooooooong");
+	game->win = mlx_new_window(game->mlx, 600, 400, "so_long");
 	if (!game->win)
 		free(game->mlx);
 	if (!game->win)

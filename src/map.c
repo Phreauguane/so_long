@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:31:41 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/22 11:45:48 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/22 12:03:29 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	count_lines(char *file)
 		if (line)
 			free(line);
 		else
-			break;
+			break ;
 	}
 	close(fd);
 	return (i);
@@ -39,8 +39,8 @@ t_map	init_map(char *file)
 	t_map	map;
 	int		y;
 	int		x;
-	int 	fd;
-	
+	int		fd;
+
 	y = 0;
 	x = 0;
 	map.size.y = count_lines(file);
