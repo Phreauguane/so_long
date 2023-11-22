@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/21 12:15:46 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/22 11:55:46 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	init_game(t_game *game, char *file)
 {
 	(void)file;
 	game->map = init_map(file);
-	//print_map(game->map);
 	if (!game->map.valid)
 		exit_handler("Map is invalid", NULL);
 	game->mlx = mlx_init();

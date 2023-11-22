@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:31:41 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/21 12:13:17 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/22 11:45:48 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void	print_map(t_map map)
 	int	i;
 
 	i = 0;
-	while (map.data[i])
+	while (i < map.size.y)
 		ft_printf("%s", map.data[i++]);
 }
