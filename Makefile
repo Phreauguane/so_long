@@ -22,6 +22,9 @@ C_FILE		=	main.c		\
 				game.c		\
 				map.c		\
 				verif_map.c	\
+				draw.c		\
+				draw2.c		\
+				textures.c	\
 				utils.c
 
 SRC_DIR		=	./src/
