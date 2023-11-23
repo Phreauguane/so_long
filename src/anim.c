@@ -1,46 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   anim.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 19:43:58 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/23 14:45:44 by jde-meo          ###   ########.fr       */
+/*   Created: 2023/11/23 14:10:52 by jde-meo           #+#    #+#             */
+/*   Updated: 2023/11/23 14:45:38 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	min(int x, int y)
+void	rotate(t_tex **tex)
 {
-	if (x < y)
-		return (x);
-	return (y);
-}
+	t_tex	*t;
+	t_tex	*tmp;
 
-int	max(int x, int y)
-{
-	if (x > y)
-		return (x);
-	return (y);
-}
-
-void	exit_handler(char *msg, char *info)
-{
-	ft_putstr_fd("Error: ", 2);
-	if (info)
+	if (!(*tex))
+		return ;
+	t = *tex;
+	while (t->next)
 	{
-		ft_putstr_fd(msg, 2);
-		ft_putstr_fd(": ", 2);
-		ft_putendl_fd(info, 2);
+		tmp = t;
+		t = t->next;
 	}
-	else
-		ft_putendl_fd(msg, 2);
-	exit(-1);
+	if (t == *tex)
+		return ;
+	tmp->next = NULL;
+	t->next = *tex;
+	*tex = t;
 }
 
-int	trgb(int t, int r, int g, int b)
+void	rotate_textures(t_game *g)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	rotate(&g->set.wall);
+	rotate(&g->set.player);
+	rotate(&g->set.collec);
+	rotate(&g->set.end);
 }

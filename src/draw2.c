@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:05:19 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/22 16:22:35 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/23 13:20:35 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	set_pixel(t_game g, int x, int y, char *val)
 {
+	//ft_printf("Changin pixel at %d %d\n", x, y);
 	g.data[y * g.line + x * (g.bpp / 8) + 0] = val[0];
 	g.data[y * g.line + x * (g.bpp / 8) + 1] = val[1];
 	g.data[y * g.line + x * (g.bpp / 8) + 2] = val[2];

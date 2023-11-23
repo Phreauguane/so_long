@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/04 19:21:35 by asimon            #+#    #+#             */
+/*   Created: 2022/01/04 19:21:35 by jde-meo            #+#    #+#             */
 /*   Updated: 2023/11/22 16:23:32 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -23,20 +23,24 @@
 # include <X11/X.h>
 # include <fcntl.h>
 
-/*=========== TO DESIGN ===========*/
-# define FLOOR_XPM "textures/floor.xpm"
+/*============= MACROS =============*/
 # define WALL_XPM "textures/wall.xpm"
 # define PLAYER_XPM "textures/player.xpm"
-# define COLLEC_XPM "textures/collec.xpm"
+# define COLLEC_XPM "textures/collect.xpm"
 # define END_XPM "textures/end.xpm"
+# define END2_XPM "textures/end2.xpm"
 # define TEX_W 64
 # define TEX_H 64
-# define B_H 16
-# define B_W 32
-# define XPX 32
-# define XPY 16
-# define YPX 32
-# define YPY 16
+# define B_H 50
+# define B_W 64
+# define XPX 20
+# define XPY 20
+# define YPX 44
+# define YPY 14
+# define ZPX 0
+# define ZPY 30
+# define FRAME_DELAY 1000
+# define ANIM_DELAY 5
 /*=================================*/
 
 typedef struct s_vec2
@@ -71,8 +75,17 @@ typedef struct s_map
 	t_vec2	size;
 	char	**data;
 	char	**buff;
+	int		to_collect;
 	char	valid;
 }	t_map;
+
+typedef struct s_plr
+{
+	t_vec2	pos;
+	int		collected;
+	int		moves;
+	int		last_move;
+}	t_plr;
 
 typedef struct s_game
 {
@@ -86,10 +99,12 @@ typedef struct s_game
 	t_vec2		size;
 	t_map		map;
 	t_tileset	set;
+	t_plr		player;
 }	t_game;
 
 /*	GAME.C			*/
 void	init_game(t_game *game, char *file);
+int		on_destroy(t_game *game);
 
 /*	MAP.C			*/
 void	init_map(char *file, t_map *map);
@@ -116,5 +131,13 @@ void	init_texs(t_game *game);
 int		min(int x, int y);
 int		max(int x, int y);
 void	exit_handler(char *msg, char *info);
+int		trgb(int t, int r, int g, int b);
+
+/*	PLAYER.C		*/
+void	move_player(t_game *g, int key);
+void	init_plr(t_game *g);
+
+/*	ANIM.C			*/
+void	rotate_textures(t_game *g);
 
 #endif

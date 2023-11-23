@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:34:36 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/22 16:35:32 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/23 14:22:17 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	free_tex(t_tex	*tex, t_game game)
 
 void	destroy_texs(t_game game)
 {
-	free_tex(game.set.floor, game);
 	free_tex(game.set.wall, game);
+	free_tex(game.set.player, game);
+	free_tex(game.set.collec, game);
+	free_tex(game.set.end, game);
 	/*		ADD ALL TEXTURES		*/
 }
 
@@ -35,7 +37,8 @@ t_tex	*create_tex(t_game game, char *file)
 	tex = malloc(sizeof(t_tex));
 	tex->next = NULL;
 	tex->file = file;
-	tex->img = mlx_xpm_file_to_image(game.mlx, file, &(tex->size.x), &(tex->size.y));
+	tex->img = mlx_xpm_file_to_image(game.mlx, file, 
+			&(tex->size.x), &(tex->size.y));
 	if (tex->img == NULL)
 		exit_handler("Couldn't load texture from: ", file);
 	tex->data = mlx_get_data_addr(tex->img, &(tex->bpp),
@@ -60,7 +63,11 @@ void	add_tex(t_game game, t_tex **tex, char *file)
 
 void	init_texs(t_game *game)
 {
-	game->set.floor = create_tex(*game, FLOOR_XPM);
 	game->set.wall = create_tex(*game, WALL_XPM);
+	game->set.player = create_tex(*game, PLAYER_XPM);
+	game->set.collec = create_tex(*game, COLLEC_XPM);
+	game->set.end = create_tex(*game, END_XPM);
+	add_tex(*game, &(game->set.end), END2_XPM);
+	ft_printf("Loaded all textures succesfully!\n");
 	/*		ADD ALL TEXTURES		*/
 }

@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:12:25 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/22 12:03:54 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/23 14:56:10 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	verif_map(t_map *map)
 	if (map->size.x < 1 || map->size.y < 1)
 		exit_handler("Invalid map", NULL);
 	collectibles = count_char(*map, 'C');
+	map->to_collect = collectibles;
 	spawn = count_char(*map, 'P');
 	end = count_char(*map, 'E');
 	if (collectibles == 0 || spawn != 1 || end != 1)
