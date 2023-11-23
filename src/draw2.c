@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:05:19 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/23 13:20:35 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/23 16:50:22 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	set_pixel(t_game g, int x, int y, char *val)
 char	*get_pix(t_tex t, int x, int y)
 {
 	return (&(t.data[y * t.line + x * (t.bpp / 8)]));
+}
+
+void	clear_screen(t_game g)
+{
+	ft_memset(g.data, 0, g.size.x * g.size.y * (g.bpp / 8));
 }
 
 char	*get_pix2(t_game g, int x, int y)

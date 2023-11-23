@@ -87,6 +87,13 @@ typedef struct s_plr
 	int		last_move;
 }	t_plr;
 
+typedef struct s_mob
+{
+	t_vec2			pos;
+	t_vec2			move;
+	struct s_mob	*next;
+}	t_mob;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -100,6 +107,7 @@ typedef struct s_game
 	t_map		map;
 	t_tileset	set;
 	t_plr		player;
+	t_mob		*mobs;
 }	t_game;
 
 /*	GAME.C			*/
@@ -113,6 +121,7 @@ void	print_map(t_map map);
 /*	VERIF_MAP.C		*/
 t_vec2	get_pos(t_map map, char c);
 void	verif_map(t_map *map);
+void	reset_buff(t_map map);
 
 /*	DRAW.C			*/
 void	draw_game(t_game game);
@@ -122,6 +131,7 @@ void	set_pixel(t_game g, int x, int y, char *val);
 char	*get_pix(t_tex t, int x, int y);
 char	*get_pix2(t_game g, int x, int y);
 int		pixel_cmp(char *p1, char *p2);
+void	clear_screen(t_game g);
 
 /*	TEXTURES.C		*/
 void	destroy_texs(t_game game);
@@ -139,5 +149,12 @@ void	init_plr(t_game *g);
 
 /*	ANIM.C			*/
 void	rotate_textures(t_game *g);
+
+/*	MOBS.c			*/
+t_mob	*init_mobs(t_map map);
+void	free_mobs(t_mob *mobs);
+
+/*	MOVE_MOBS.c		*/
+void	move_mobs(t_game *g);
 
 #endif

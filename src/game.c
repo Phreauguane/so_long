@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/23 14:51:22 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/23 16:47:05 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	on_destroy(t_game *game)
 	ft_free_split(game->map.data);
 	ft_free_split(game->map.buff);
 	destroy_texs(*game);
+	free_mobs(game->mobs);
 	mlx_destroy_image(game->mlx, game->img);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
@@ -64,6 +65,8 @@ int	loop(t_game *game)
 	frame++;
 	if (!(frame % ANIM_DELAY))
 		rotate_textures(game);
+	if (!(frame % ANIM_DELAY))
+		move_mobs(game);
 	draw_game(*game);
 	display_info(*game);
 	return (0);
@@ -75,6 +78,7 @@ void	init_game(t_game *game, char *file)
 	if (!game->map.valid)
 		exit_handler("Map is invalid", NULL);
 	init_plr(game);
+	game->mobs = init_mobs(game->map);
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		exit_handler("mlx_init() returned NULL", NULL);

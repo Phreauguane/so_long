@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:22:01 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/23 13:58:13 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/23 16:53:45 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ void	put_tex_to_screen(t_game g, t_tex *t, int x, int y)
 	}
 }
 
-void	clear_screen(t_game g)
-{
-	ft_memset(g.data, 0, g.size.x * g.size.y * (g.bpp / 8));
-}
-
 void	display_map(t_game g)
 {
 	int	x;
@@ -62,12 +57,35 @@ void	display_map(t_game g)
 	}
 }
 
+void	put_to(t_game g, int x, int y)
+{
+	t_mob	*m;
+	int i;
+	int j;
+
+	i = (g.map.size.x - x - 1) * XPX + y * YPX;
+	j = y * YPY + x * XPY;
+	if (g.map.data[y][x] == '1')
+		put_tex_to_screen(g, g.set.wall, i, j);
+	if (g.map.data[y][x] == 'C')
+		put_tex_to_screen(g, g.set.collec, i, j);
+	if (g.map.data[y][x] == 'E')
+		put_tex_to_screen(g, g.set.end, i, j);
+	if (x == g.player.pos.x && y == g.player.pos.y)
+		put_tex_to_screen(g, g.set.player, i, j);
+	m = g.mobs;
+	while (m)
+	{
+		if (x == m->pos.x && y == m->pos.y)
+			put_tex_to_screen(g, g.set.collec, i, j);
+		m = m->next;
+	}
+}
+
 void	display_up_layer(t_game g)
 {
 	int	x;
 	int	y;
-	int i;
-	int j;
 
 	y = 0;
 	while (y < g.map.size.y)
@@ -75,16 +93,7 @@ void	display_up_layer(t_game g)
 		x = 0;
 		while (x < g.map.size.x)
 		{
-			i = (g.map.size.x - x - 1) * XPX + y * YPX;
-			j = y * YPY + x * XPY;
-			if (g.map.data[y][x] == '1')
-				put_tex_to_screen(g, g.set.wall, i, j);
-			if (g.map.data[y][x] == 'C')
-				put_tex_to_screen(g, g.set.collec, i, j);
-			if (g.map.data[y][x] == 'E')
-				put_tex_to_screen(g, g.set.end, i, j);
-			if (x == g.player.pos.x && y == g.player.pos.y)
-				put_tex_to_screen(g, g.set.player, i, j);
+			put_to(g, x, y);
 			x++;
 		}
 		y++;

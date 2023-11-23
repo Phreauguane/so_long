@@ -27,6 +27,8 @@ C_FILE		=	main.c		\
 				draw2.c		\
 				textures.c	\
 				player.c	\
+				mob.c		\
+				move_mob.c	\
 				utils.c
 
 SRC_DIR		=	./src/
