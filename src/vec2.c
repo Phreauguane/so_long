@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   anim.c                                             :+:      :+:    :+:   */
+/*   vec2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 14:10:52 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/27 16:32:39 by jde-meo          ###   ########.fr       */
+/*   Created: 2023/11/27 15:09:05 by jde-meo           #+#    #+#             */
+/*   Updated: 2023/11/27 15:15:37 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	rotate(t_tex **tex)
+t_vec2	addv(t_vec2 v1, t_vec2 v2)
 {
-	t_tex	*t;
-	t_tex	*tmp;
-
-	if (!(*tex))
-		return ;
-	t = *tex;
-	while (t->next)
-	{
-		tmp = t;
-		t = t->next;
-	}
-	if (t == *tex)
-		return ;
-	tmp->next = NULL;
-	t->next = *tex;
-	*tex = t;
+	return ((t_vec2){v1.x + v2.x, v1.y + v2.y});
 }
 
-void	rotate_textures(t_game *g)
+void	addv2(t_vec2 *v1, t_vec2 v2)
 {
-	rotate(&g->set.wall);
-	rotate(&g->set.player);
-	rotate(&g->set.collec);
-	rotate(&g->set.end);
-	rotate(&g->set.ennemy);
+	v1->x += v2.x;
+	v1->y += v2.y;
+}
+
+int	cmpv(t_vec2 v1, t_vec2 v2)
+{
+	return (v1.x == v2.x && v1.y == v2.y);
 }

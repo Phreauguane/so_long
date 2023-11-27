@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:22:01 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/23 16:53:45 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/27 16:49:17 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	display_map(t_game g)
 		{
 			i = (g.map.size.x - x - 1) * XPX + y * YPX;
 			j = y * YPY + x * XPY + ZPY;
-			put_tex_to_screen(g, g.set.wall, i, j);
+			if (g.map.data[y][x] != '1')
+				put_tex_to_screen(g, g.set.wall, i, j);
 			x++;
 		}
 		y++;
@@ -65,8 +66,8 @@ void	put_to(t_game g, int x, int y)
 
 	i = (g.map.size.x - x - 1) * XPX + y * YPX;
 	j = y * YPY + x * XPY;
-	if (g.map.data[y][x] == '1')
-		put_tex_to_screen(g, g.set.wall, i, j);
+	//if (g.map.data[y][x] == '1')
+	//	put_tex_to_screen(g, g.set.wall, i, j);
 	if (g.map.data[y][x] == 'C')
 		put_tex_to_screen(g, g.set.collec, i, j);
 	if (g.map.data[y][x] == 'E')
@@ -77,7 +78,7 @@ void	put_to(t_game g, int x, int y)
 	while (m)
 	{
 		if (x == m->pos.x && y == m->pos.y)
-			put_tex_to_screen(g, g.set.collec, i, j);
+			put_tex_to_screen(g, g.set.ennemy, i, j);
 		m = m->next;
 	}
 }
@@ -102,6 +103,7 @@ void	display_up_layer(t_game g)
 
 void	draw_game(t_game game)
 {
+	clear_screen(game);
 	display_map(game);
 	display_up_layer(game);
 	mlx_put_image_to_window(game.mlx, game.win, game.img, 0, 0);

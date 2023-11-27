@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/23 16:47:05 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/27 16:33:40 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	loop(t_game *game)
 		return (0);
 	timer = 0;
 	frame++;
-	if (!(frame % ANIM_DELAY))
+	if (!(frame % (ANIM_DELAY / 2)))
 		rotate_textures(game);
 	if (!(frame % ANIM_DELAY))
 		move_mobs(game);

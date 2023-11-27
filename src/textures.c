@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:34:36 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/23 14:22:17 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/27 16:31:56 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	destroy_texs(t_game game)
 	free_tex(game.set.player, game);
 	free_tex(game.set.collec, game);
 	free_tex(game.set.end, game);
+	free_tex(game.set.ennemy, game);
 	/*		ADD ALL TEXTURES		*/
 }
 
@@ -68,6 +69,8 @@ void	init_texs(t_game *game)
 	game->set.collec = create_tex(*game, COLLEC_XPM);
 	game->set.end = create_tex(*game, END_XPM);
 	add_tex(*game, &(game->set.end), END2_XPM);
+	game->set.ennemy = create_tex(*game, ENNEMY_XPM);
+	add_tex(*game, &(game->set.ennemy), ENNEMY2_XPM);
 	ft_printf("Loaded all textures succesfully!\n");
 	/*		ADD ALL TEXTURES		*/
 }

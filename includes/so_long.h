@@ -29,6 +29,8 @@
 # define COLLEC_XPM "textures/collect.xpm"
 # define END_XPM "textures/end.xpm"
 # define END2_XPM "textures/end2.xpm"
+# define ENNEMY_XPM "textures/enemy.xpm"
+# define ENNEMY2_XPM "textures/enemy2.xpm"
 # define TEX_W 64
 # define TEX_H 64
 # define B_H 50
@@ -39,7 +41,7 @@
 # define YPY 14
 # define ZPX 0
 # define ZPY 30
-# define FRAME_DELAY 1000
+# define FRAME_DELAY 500
 # define ANIM_DELAY 5
 /*=================================*/
 
@@ -67,6 +69,7 @@ typedef struct s_tileset
 	t_tex	*floor;
 	t_tex	*wall;
 	t_tex	*collec;
+	t_tex	*ennemy;
 	t_tex	*end;
 }	t_tileset;
 
@@ -142,6 +145,11 @@ int		min(int x, int y);
 int		max(int x, int y);
 void	exit_handler(char *msg, char *info);
 int		trgb(int t, int r, int g, int b);
+
+/*	VEC2.C			*/
+t_vec2	addv(t_vec2 v1, t_vec2 v2);
+void	addv2(t_vec2 *v1, t_vec2 v2);
+int		cmpv(t_vec2 v1, t_vec2 v2);
 
 /*	PLAYER.C		*/
 void	move_player(t_game *g, int key);

@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:48:36 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/23 17:11:42 by jde-meo          ###   ########.fr       */
+/*   Updated: 2023/11/27 15:18:03 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 
 int	min_positive(int r[5])
 {
-	if (r[0] >= 0 && r[0] <= r[1] && r[0] <= r[2] && r[0] <= r[3] && r[0] <= r[4])
+	if (r[0] >= 0 && r[0] <= r[1] && r[0] <= r[2] 
+		&& r[0] <= r[3] && r[0] <= r[4])
 		return (r[0]);
-	if (r[1] >= 0 && r[1] <= r[0] && r[1] <= r[2] && r[1] <= r[3] && r[1] <= r[4])
+	if (r[1] >= 0 && r[1] <= r[0] && r[1] <= r[2] 
+		&& r[1] <= r[3] && r[1] <= r[4])
 		return (r[1]);
-	if (r[2] >= 0 && r[2] <= r[0] && r[2] <= r[1] && r[2] <= r[3] && r[2] <= r[4])
+	if (r[2] >= 0 && r[2] <= r[0] && r[2] <= r[1] 
+		&& r[2] <= r[3] && r[2] <= r[4])
 		return (r[2]);
-	if (r[3] >= 0 && r[3] <= r[0] && r[3] <= r[1] && r[3] <= r[2] && r[3] <= r[4])
+	if (r[3] >= 0 && r[3] <= r[0] && r[3] <= r[1] 
+		&& r[3] <= r[2] && r[3] <= r[4])
 		return (r[3]);
-	if (r[4] >= 0 && r[4] <= r[0] && r[4] <= r[1] && r[4] <= r[2] && r[4] <= r[3])
+	if (r[4] >= 0 && r[4] <= r[0] && r[4] <= r[1] 
+		&& r[4] <= r[2] && r[4] <= r[3])
 		return (r[4]);
 	return (-2);
 }
@@ -71,13 +76,23 @@ t_vec2	find_move(t_vec2 p, t_vec2 d, t_map m)
 void	move_mobs(t_game *g)
 {
 	t_mob	*m;
+	t_mob	*n;
 
 	m = g->mobs;
 	while (m)
 	{
 		m->move = find_move(m->pos, g->player.pos, g->map);
-		m->pos.x += m->move.x;
-		m->pos.y += m->move.y;
+		n = g->mobs;
+		while (n)
+		{
+			if (n != m && cmpv(addv(m->pos, m->move), n->pos))
+				break;
+			n = n->next;
+		}
+		if (!n)
+			addv2(&m->pos, m->move);
+		if (cmpv(m->pos, g->player.pos))
+			on_destroy(g);
 		m = m->next;
 	}
 }

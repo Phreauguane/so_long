@@ -29,6 +29,7 @@ C_FILE		=	main.c		\
 				player.c	\
 				mob.c		\
 				move_mob.c	\
+				vec2.c		\
 				utils.c
 
 SRC_DIR		=	./src/
