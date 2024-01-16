@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/27 16:33:40 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/01/16 16:18:17 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ int	loop(t_game *game)
 {
 	static int	timer;
 	static int	frame;
-	char		*str;
 
-	str = NULL;
 	if (timer++ < FRAME_DELAY)
 		return (0);
 	timer = 0;
