@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:22:01 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/27 16:49:17 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/01/23 00:50:56 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	put_to(t_game g, int x, int y)
 
 	i = (g.map.size.x - x - 1) * XPX + y * YPX;
 	j = y * YPY + x * XPY;
-	//if (g.map.data[y][x] == '1')
-	//	put_tex_to_screen(g, g.set.wall, i, j);
+	if (g.map.data[y][x] == '1')
+		put_tex_to_screen(g, g.set.wall, i, j);
 	if (g.map.data[y][x] == 'C')
 		put_tex_to_screen(g, g.set.collec, i, j);
 	if (g.map.data[y][x] == 'E')

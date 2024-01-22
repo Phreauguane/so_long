@@ -6,7 +6,7 @@
 /*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/16 16:18:17 by larz             ###   ########.fr       */
+/*   Updated: 2024/01/23 00:40:43 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	init_game(t_game *game, char *file)
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, &on_keypress, game);
 	mlx_hook(game->win, DestroyNotify, StructureNotifyMask, &on_destroy, game);
 	mlx_loop_hook (game->mlx, &loop, game);
+	update_lights(game);
 	draw_game(*game);
 	mlx_loop(game->mlx);
 }

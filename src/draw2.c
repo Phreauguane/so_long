@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:05:19 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/23 16:50:22 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/01/23 00:44:46 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 void	set_pixel(t_game g, int x, int y, char *val)
 {
-	//ft_printf("Changin pixel at %d %d\n", x, y);
-	g.data[y * g.line + x * (g.bpp / 8) + 0] = val[0];
-	g.data[y * g.line + x * (g.bpp / 8) + 1] = val[1];
-	g.data[y * g.line + x * (g.bpp / 8) + 2] = val[2];
+	float	light;
+
+	light = get_lighting(g, x, y);
+	if (light > 1.f)
+		light = 1.f;
+	g.data[y * g.line + x * (g.bpp / 8) + 0] = (float)(unsigned char)val[0] * light;
+	g.data[y * g.line + x * (g.bpp / 8) + 1] = (float)(unsigned char)val[1] * light;
+	g.data[y * g.line + x * (g.bpp / 8) + 2] = (float)(unsigned char)val[2] * light;
 }
 
 char	*get_pix(t_tex t, int x, int y)

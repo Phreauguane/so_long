@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:38:47 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/23 14:57:26 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/01/23 00:50:12 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,14 @@ void	move_event(t_game *g, int x, int y)
 		move_to(g, x, y);
 	if (g->map.data[y][x] == 'C')
 	{
-		g->map.data[y][x] = 0;
+		g->map.data[y][x] = '0';
 		(g->player.collected)++;
 	}
 	if (g->map.data[y][x] == 'E'
 		&& g->map.to_collect == g->player.collected)
 		on_destroy(g);
+	if (g->map.data[y][x] != '1')
+		update_lights(g);
 }
 
 void	move_player(t_game *g, int key)

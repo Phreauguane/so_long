@@ -10,7 +10,7 @@ MLX_FILE	=	libmlx.a
 
 LIBFT_LIB	=	$(addprefix $(LIBFT_PATH), $(LIBFT_FILE))
 
-MLX_FLAG	=	-lX11 -lXext
+MLX_FLAG	=	-lX11 -lXext -lm
 
 MLX_PATH	=	./minilibx/
 
@@ -30,7 +30,9 @@ C_FILE		=	main.c		\
 				mob.c		\
 				move_mob.c	\
 				vec2.c		\
-				utils.c
+				utils.c		\
+				utils2.c	\
+				lighting.c
 
 SRC_DIR		=	./src/
 

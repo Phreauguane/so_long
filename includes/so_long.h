@@ -22,6 +22,7 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <fcntl.h>
+# include <math.h>
 
 /*============= MACROS =============*/
 # define WALL_XPM "textures/wall.xpm"
@@ -43,6 +44,7 @@
 # define ZPY 30
 # define FRAME_DELAY 500
 # define ANIM_DELAY 5
+# define LIGHT_CONST 20.f
 /*=================================*/
 
 typedef struct s_vec2
@@ -106,6 +108,7 @@ typedef struct s_game
 	int			bpp;
 	int			line;
 	int			endian;
+	t_vec2		*lights;
 	t_vec2		size;
 	t_map		map;
 	t_tileset	set;
@@ -136,6 +139,10 @@ char	*get_pix2(t_game g, int x, int y);
 int		pixel_cmp(char *p1, char *p2);
 void	clear_screen(t_game g);
 
+/*	LIGHTING.C		*/
+void    update_lights(t_game *g);
+float	get_lighting(t_game g, int x, int y);
+
 /*	TEXTURES.C		*/
 void	destroy_texs(t_game game);
 void	init_texs(t_game *game);
@@ -145,6 +152,11 @@ int		min(int x, int y);
 int		max(int x, int y);
 void	exit_handler(char *msg, char *info);
 int		trgb(int t, int r, int g, int b);
+float	dist(int x1, int y1, int x2, int y2);
+
+/*	UTILS2.C		*/
+t_vec2  get_screen_pos(t_game g, t_vec2 pos);
+float	maxf(float x, float y);
 
 /*	VEC2.C			*/
 t_vec2	addv(t_vec2 v1, t_vec2 v2);
