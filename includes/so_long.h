@@ -25,6 +25,7 @@
 # include <math.h>
 
 /*============= MACROS =============*/
+# define FLOOR_XPM "textures/floor.xpm"
 # define WALL_XPM "textures/wall.xpm"
 # define PLAYER_XPM "textures/player.xpm"
 # define COLLEC_XPM "textures/collect.xpm"
@@ -44,7 +45,7 @@
 # define ZPY 30
 # define FRAME_DELAY 500
 # define ANIM_DELAY 5
-# define LIGHT_CONST 20.f
+# define LIGHT_CONST 35.f
 /*=================================*/
 
 typedef struct s_vec2
@@ -142,6 +143,7 @@ void	clear_screen(t_game g);
 /*	LIGHTING.C		*/
 void    update_lights(t_game *g);
 float	get_lighting(t_game g, int x, int y);
+float	add_dithering(float l, int x, int y);
 
 /*	TEXTURES.C		*/
 void	destroy_texs(t_game game);

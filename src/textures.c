@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:34:36 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/27 16:31:56 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/01/23 00:59:32 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	free_tex(t_tex	*tex, t_game game)
 
 void	destroy_texs(t_game game)
 {
+	free_tex(game.set.floor, game);
 	free_tex(game.set.wall, game);
 	free_tex(game.set.player, game);
 	free_tex(game.set.collec, game);
@@ -64,6 +65,7 @@ void	add_tex(t_game game, t_tex **tex, char *file)
 
 void	init_texs(t_game *game)
 {
+	game->set.floor = create_tex(*game, FLOOR_XPM);
 	game->set.wall = create_tex(*game, WALL_XPM);
 	game->set.player = create_tex(*game, PLAYER_XPM);
 	game->set.collec = create_tex(*game, COLLEC_XPM);

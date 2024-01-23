@@ -6,7 +6,7 @@
 /*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:22:01 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/23 00:50:56 by larz             ###   ########.fr       */
+/*   Updated: 2024/01/23 00:59:58 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	display_map(t_game g)
 		{
 			i = (g.map.size.x - x - 1) * XPX + y * YPX;
 			j = y * YPY + x * XPY + ZPY;
-			if (g.map.data[y][x] != '1')
-				put_tex_to_screen(g, g.set.wall, i, j);
+			put_tex_to_screen(g, g.set.floor, i, j);
 			x++;
 		}
 		y++;

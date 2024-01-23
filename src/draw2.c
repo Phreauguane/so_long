@@ -6,7 +6,7 @@
 /*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:05:19 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/23 00:44:46 by larz             ###   ########.fr       */
+/*   Updated: 2024/01/23 01:41:52 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	set_pixel(t_game g, int x, int y, char *val)
 {
 	float	light;
 
-	light = get_lighting(g, x, y);
+	light = add_dithering(get_lighting(g, x, y), x, y);
 	if (light > 1.f)
 		light = 1.f;
 	g.data[y * g.line + x * (g.bpp / 8) + 0] = (float)(unsigned char)val[0] * light;
