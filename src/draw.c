@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:22:01 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/23 00:59:58 by larz             ###   ########.fr       */
+/*   Updated: 2024/01/23 19:02:50 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,28 @@
 void	put_tex_to_screen(t_game g, t_tex *t, int x, int y)
 {
 	char	*p;
+	float	d;
 	int		i;
 	int		j;
 
-	i = 0;
-	while (i < t->size.x)
+	i = -1;
+	d = (float)g.size.x * (float)g.size.y;
+	while (g.lights && g.lights[++i].x >= 0)
+		d = minf(d, dis2(x + 32, y + 32, gsp(g, g.lights[i])));
+	if (d > 175.f)
+		return ;
+	i = -1;
+	while (++i < t->size.x)
 	{
-		j = 0;
-		while (j < t->size.y)
+		j = -1;
+		while (++j < t->size.y)
 		{
 			p = get_pix(*t, i, j);
 			if (!pixel_cmp(p, "\0\0\0\0")
 				&& x + i < g.size.x && y + j < g.size.y
 				&& x + 1 > 0 && y + j > 0)
 				set_pixel(g, x + i, y + j, p);
-			j++;
 		}
-		i++;
 	}
 }
 

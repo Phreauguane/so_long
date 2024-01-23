@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:10:52 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/27 16:32:39 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/01/23 18:20:11 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ void	rotate_textures(t_game *g)
 	rotate(&g->set.wall);
 	rotate(&g->set.player);
 	rotate(&g->set.collec);
-	rotate(&g->set.end);
 	rotate(&g->set.ennemy);
+}
+
+void	open_end(t_game *g)
+{
+	rotate(&g->set.end);
 }

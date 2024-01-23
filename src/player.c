@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:38:47 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/23 00:50:12 by larz             ###   ########.fr       */
+/*   Updated: 2024/01/23 18:20:35 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	move_event(t_game *g, int x, int y)
 	{
 		g->map.data[y][x] = '0';
 		(g->player.collected)++;
+		if (g->map.to_collect == g->player.collected)
+			open_end(g);
 	}
 	if (g->map.data[y][x] == 'E'
 		&& g->map.to_collect == g->player.collected)

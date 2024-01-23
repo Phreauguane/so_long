@@ -28,6 +28,14 @@
 # define FLOOR_XPM "textures/floor.xpm"
 # define WALL_XPM "textures/wall.xpm"
 # define PLAYER_XPM "textures/player.xpm"
+# define PLAYER2_XPM "textures/player2.xpm"
+# define PLAYER3_XPM "textures/player3.xpm"
+# define PLAYER4_XPM "textures/player4.xpm"
+# define PLAYER5_XPM "textures/player5.xpm"
+# define PLAYER6_XPM "textures/player6.xpm"
+# define PLAYER7_XPM "textures/player7.xpm"
+# define PLAYER8_XPM "textures/player8.xpm"
+# define PLAYER9_XPM "textures/player9.xpm"
 # define COLLEC_XPM "textures/collect.xpm"
 # define END_XPM "textures/end.xpm"
 # define END2_XPM "textures/end2.xpm"
@@ -37,13 +45,13 @@
 # define TEX_H 64
 # define B_H 50
 # define B_W 64
-# define XPX 20
-# define XPY 20
-# define YPX 44
-# define YPY 14
+# define XPX 22
+# define XPY 22
+# define YPX 40
+# define YPY 10
 # define ZPX 0
-# define ZPY 30
-# define FRAME_DELAY 500
+# define ZPY 28
+# define FRAME_DELAY 50
 # define ANIM_DELAY 5
 # define LIGHT_CONST 35.f
 /*=================================*/
@@ -157,8 +165,10 @@ int		trgb(int t, int r, int g, int b);
 float	dist(int x1, int y1, int x2, int y2);
 
 /*	UTILS2.C		*/
-t_vec2  get_screen_pos(t_game g, t_vec2 pos);
+t_vec2  gsp(t_game g, t_vec2 pos);
 float	maxf(float x, float y);
+float	minf(float x, float y);
+float	dis2(int x1, int y1, t_vec2 p);
 
 /*	VEC2.C			*/
 t_vec2	addv(t_vec2 v1, t_vec2 v2);
@@ -171,6 +181,7 @@ void	init_plr(t_game *g);
 
 /*	ANIM.C			*/
 void	rotate_textures(t_game *g);
+void	open_end(t_game *g);
 
 /*	MOBS.c			*/
 t_mob	*init_mobs(t_map map);

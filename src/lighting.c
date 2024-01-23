@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 00:17:07 by larz              #+#    #+#             */
-/*   Updated: 2024/01/23 01:54:30 by larz             ###   ########.fr       */
+/*   Updated: 2024/01/23 19:01:58 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ float	get_lighting(t_game g, int x, int y)
 	i = 0;
 	while (g.lights && g.lights[i].x >= 0)
 	{
-		p = get_screen_pos(g, (t_vec2){g.lights[i].x, g.lights[i].y});
+		p = gsp(g, (t_vec2){g.lights[i].x, g.lights[i].y});
 		//l = maxf(l, LIGHT_CONST / dist(p.x, p.y, x, y));
 		//l = maxf(l, maxf(0.f, LIGHT_CONST - dist(p.x, p.y, x, y)) / LIGHT_CONST);
 		//l += maxf(0.f, LIGHT_CONST - dist(p.x, p.y, x, y)) / LIGHT_CONST;

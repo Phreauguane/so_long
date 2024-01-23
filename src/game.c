@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/23 00:40:43 by larz             ###   ########.fr       */
+/*   Updated: 2024/01/23 18:45:30 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	display_info(t_game g)
 	char	*num2;
 
 	num1 = ft_itoa(g.player.collected);
-	num2 = ft_itoa(g.player.moves);
+	num2 = ft_itoa(g.player.moves - 1);
 	s = str_adds(NULL, "Moves: ", 7);
 	s = str_adds(s, num2, ft_strlen(num2));
 	mlx_string_put(g.mlx, g.win, 10, 10, trgb(255, 255, 255, 255), s);
@@ -54,12 +54,8 @@ void	display_info(t_game g)
 
 int	loop(t_game *game)
 {
-	static int	timer;
 	static int	frame;
 
-	if (timer++ < FRAME_DELAY)
-		return (0);
-	timer = 0;
 	frame++;
 	if (!(frame % (ANIM_DELAY / 2)))
 		rotate_textures(game);

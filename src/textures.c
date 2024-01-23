@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:34:36 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/23 00:59:32 by larz             ###   ########.fr       */
+/*   Updated: 2024/01/23 18:17:51 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,14 @@ void	init_texs(t_game *game)
 	game->set.floor = create_tex(*game, FLOOR_XPM);
 	game->set.wall = create_tex(*game, WALL_XPM);
 	game->set.player = create_tex(*game, PLAYER_XPM);
+	add_tex(*game, &(game->set.player), PLAYER2_XPM);
+	add_tex(*game, &(game->set.player), PLAYER3_XPM);
+	add_tex(*game, &(game->set.player), PLAYER4_XPM);
+	add_tex(*game, &(game->set.player), PLAYER5_XPM);
+	add_tex(*game, &(game->set.player), PLAYER6_XPM);
+	add_tex(*game, &(game->set.player), PLAYER7_XPM);
+	add_tex(*game, &(game->set.player), PLAYER8_XPM);
+	add_tex(*game, &(game->set.player), PLAYER9_XPM);
 	game->set.collec = create_tex(*game, COLLEC_XPM);
 	game->set.end = create_tex(*game, END_XPM);
 	add_tex(*game, &(game->set.end), END2_XPM);
