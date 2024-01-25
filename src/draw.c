@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:22:01 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/23 19:02:50 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/01/25 23:41:08 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	display_map(t_game g)
 {
 	int	x;
 	int	y;
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	y = 0;
 	while (y < g.map.size.y)
@@ -65,8 +65,8 @@ void	display_map(t_game g)
 void	put_to(t_game g, int x, int y)
 {
 	t_mob	*m;
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	i = (g.map.size.x - x - 1) * XPX + y * YPX;
 	j = y * YPY + x * XPY;

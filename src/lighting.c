@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 00:17:07 by larz              #+#    #+#             */
-/*   Updated: 2024/01/23 19:01:58 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/01/25 23:42:18 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static int	count_lights(t_game g)
 	return (i);
 }
 
-void    update_lights(t_game *g)
+void	update_lights(t_game *g)
 {
 	int	c;
-    int	x;
+	int	x;
 	int	y;
 
 	c = count_lights(*g);
@@ -69,9 +69,6 @@ float	get_lighting(t_game g, int x, int y)
 	while (g.lights && g.lights[i].x >= 0)
 	{
 		p = gsp(g, (t_vec2){g.lights[i].x, g.lights[i].y});
-		//l = maxf(l, LIGHT_CONST / dist(p.x, p.y, x, y));
-		//l = maxf(l, maxf(0.f, LIGHT_CONST - dist(p.x, p.y, x, y)) / LIGHT_CONST);
-		//l += maxf(0.f, LIGHT_CONST - dist(p.x, p.y, x, y)) / LIGHT_CONST;
 		t = LIGHT_CONST / dist(p.x, p.y, x, y);
 		if (t < .5f)
 			l += 4.f * t * t * t;
@@ -97,12 +94,12 @@ float	add_dithering(float l, int x, int y)
 	if (l < 0.5f)
 		return (1.f);
 	if (l < 0.75f && ((x % 2 == 1 && y % 2 == 1)
-		|| (x % 2 == 0 && y % 2 == 0)))
+			|| (x % 2 == 0 && y % 2 == 0)))
 		return (0.f);
 	if (l < 0.75f)
 		return (1.f);
 	if (l < 0.975f && ((x % 3 == 1 && y % 3 == 1)
-		|| (x % 3 == 0 && y % 3 == 0)))
+			|| (x % 3 == 0 && y % 3 == 0)))
 		return (0.f);
 	return (1.f);
 }

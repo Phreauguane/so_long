@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/23 18:45:30 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/01/25 23:40:22 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	on_destroy(t_game *game)
 	return (0);
 }
 
-int	on_keypress(int keysym, t_game *game) 
+int	on_keypress(int keysym, t_game *game)
 {
 	move_player(game, keysym);
 	return (0);
@@ -78,10 +78,11 @@ void	init_game(t_game *game, char *file)
 		exit_handler("mlx_init() returned NULL", NULL);
 	game->size.x = game->map.size.x * XPX + game->map.size.y * YPX;
 	game->size.y = game->map.size.x * XPY + game->map.size.y * YPY + B_H * 2;
-	game->win = mlx_new_window(game->mlx, game->size.x, game->size.y, "so_long");
+	game->win = mlx_new_window(game->mlx, game->size.x, game->size.y,
+			"so_long");
 	game->img = mlx_new_image(game->mlx, game->size.x, game->size.y);
 	game->data = mlx_get_data_addr(game->img, &(game->bpp),
-				&(game->line), &(game->endian));
+			&(game->line), &(game->endian));
 	if (!game->win || !game->img)
 		free(game->mlx);
 	if (!game->win || !game->img)
@@ -90,7 +91,6 @@ void	init_game(t_game *game, char *file)
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, &on_keypress, game);
 	mlx_hook(game->win, DestroyNotify, StructureNotifyMask, &on_destroy, game);
 	mlx_loop_hook (game->mlx, &loop, game);
-	update_lights(game);
 	draw_game(*game);
 	mlx_loop(game->mlx);
 }
