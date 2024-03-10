@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:17:33 by larz              #+#    #+#             */
-/*   Updated: 2024/01/25 23:58:38 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/03/10 23:42:06 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,10 @@ float	minf(float x, float y)
 float	dis2(int x1, int y1, t_vec2 p)
 {
 	return (sqrtf((p.x - x1) * (p.x - x1) + (p.y - y1) * (p.y - y1)));
+}
+
+void	free2(void *ptr)
+{
+	if (ptr)
+		free(ptr);
 }

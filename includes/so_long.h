@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/04 19:21:35 by jde-meo            #+#    #+#             */
-/*   Updated: 2023/11/22 16:23:32 by jde-meo          ###   ########.fr       */
+/*   Created: 2024/03/10 23:30:49 by jde-meo           #+#    #+#             */
+/*   Updated: 2024/03/10 23:42:43 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int		pixel_cmp(char *p1, char *p2);
 void	clear_screen(t_game g);
 
 /*	LIGHTING.C		*/
-void    update_lights(t_game *g);
+void	update_lights(t_game *g);
 float	get_lighting(t_game g, int x, int y);
 float	add_dithering(float l, int x, int y);
 
@@ -165,15 +165,16 @@ void	init_texs(t_game *game);
 /*	UTILS.c			*/
 int		min(int x, int y);
 int		max(int x, int y);
-void	exit_handler(char *msg, char *info);
+void	exit_handler(char *msg, char *info, t_game *game);
 int		trgb(int t, int r, int g, int b);
 float	dist(int x1, int y1, int x2, int y2);
 
 /*	UTILS2.C		*/
-t_vec2  gsp(t_game g, t_vec2 pos);
+t_vec2	gsp(t_game g, t_vec2 pos);
 float	maxf(float x, float y);
 float	minf(float x, float y);
 float	dis2(int x1, int y1, t_vec2 p);
+void	free2(void *ptr);
 
 /*	VEC2.C			*/
 t_vec2	addv(t_vec2 v1, t_vec2 v2);

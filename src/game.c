@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/25 23:40:22 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/03/10 23:53:05 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ int	on_destroy(t_game *game)
 	ft_free_split(game->map.buff);
 	destroy_texs(*game);
 	free_mobs(game->mobs);
-	mlx_destroy_image(game->mlx, game->img);
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
+	if (game->mlx && game->img)
+		mlx_destroy_image(game->mlx, game->img);
+	if (game->mlx && game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+		mlx_destroy_display(game->mlx);
+	free2(game->lights);
+	free2(game->mlx);
 	exit(0);
 	return (0);
 }
@@ -43,13 +47,13 @@ void	display_info(t_game g)
 	s = str_adds(NULL, "Moves: ", 7);
 	s = str_adds(s, num2, ft_strlen(num2));
 	mlx_string_put(g.mlx, g.win, 10, 10, trgb(255, 255, 255, 255), s);
-	free(s);
+	free2(s);
 	s = str_adds(NULL, "Collected: ", 12);
 	s = str_adds(s, num1, ft_strlen(num1));
-	free(num1);
-	free(num2);
+	free2(num1);
+	free2(num2);
 	mlx_string_put(g.mlx, g.win, 10, 20, trgb(255, 255, 255, 255), s);
-	free(s);
+	free2(s);
 }
 
 int	loop(t_game *game)
@@ -70,12 +74,12 @@ void	init_game(t_game *game, char *file)
 {
 	init_map(file, &(game->map));
 	if (!game->map.valid)
-		exit_handler("Map is invalid", NULL);
+		exit_handler("Map is invalid", NULL, game);
 	init_plr(game);
 	game->mobs = init_mobs(game->map);
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		exit_handler("mlx_init() returned NULL", NULL);
+		exit_handler("mlx_init() returned NULL", NULL, game);
 	game->size.x = game->map.size.x * XPX + game->map.size.y * YPX;
 	game->size.y = game->map.size.x * XPY + game->map.size.y * YPY + B_H * 2;
 	game->win = mlx_new_window(game->mlx, game->size.x, game->size.y,
@@ -86,7 +90,7 @@ void	init_game(t_game *game, char *file)
 	if (!game->win || !game->img)
 		free(game->mlx);
 	if (!game->win || !game->img)
-		exit_handler("Couldn't create window", NULL);
+		exit_handler("Couldn't create window", NULL, game);
 	init_texs(game);
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, &on_keypress, game);
 	mlx_hook(game->win, DestroyNotify, StructureNotifyMask, &on_destroy, game);

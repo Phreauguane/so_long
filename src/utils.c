@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:43:58 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/25 23:58:41 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/03/10 23:54:26 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	max(int x, int y)
 	return (y);
 }
 
-void	exit_handler(char *msg, char *info)
+void	exit_handler(char *msg, char *info, t_game *game)
 {
 	ft_putstr_fd("Error: ", 2);
 	if (info)
@@ -37,6 +37,8 @@ void	exit_handler(char *msg, char *info)
 	}
 	else
 		ft_putendl_fd(msg, 2);
+	if (game)
+		on_destroy(game);
 	exit(-1);
 }
 

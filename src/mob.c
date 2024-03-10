@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:32:33 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/23 16:47:54 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/03/10 23:51:33 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_mobs(t_mob *mobs)
 	if (mobs == NULL)
 		return ;
 	free_mobs(mobs->next);
-	free(mobs);
+	free2(mobs);
 }
 
 t_mob	*create_mob(int x, int y)
@@ -25,7 +25,7 @@ t_mob	*create_mob(int x, int y)
 	t_mob	*mob;
 
 	mob = malloc(sizeof(t_mob));
-	mob->next = NULL;
+	ft_bzero(mob, sizeof(t_mob));
 	mob->pos = (t_vec2){x, y};
 	return (mob);
 }
