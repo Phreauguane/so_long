@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:34:36 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/03/10 23:47:36 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/03/11 12:46:49 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ t_tex	*create_tex(t_game *game, char *file)
 		exit_handler("Couldn't load texture from: ", file, game);
 	tex->data = mlx_get_data_addr(tex->img, &(tex->bpp),
 			&(tex->line), &(tex->endian));
-	ft_printf("Loaded texture at [%s]. size : %dx%d. BPP : %d\n",
-		tex->file, tex->size.x, tex->size.y, tex->bpp);
 	return (tex);
 }
 

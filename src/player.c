@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:38:47 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/01/23 18:20:35 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/03/11 13:18:26 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ void	init_plr(t_game *g)
 
 void	move_to(t_game *g, int x, int y)
 {
+	if (g->player.pos.x == x && g->player.pos.y == y)
+		return ;
+	g->player.moves++;
+	ft_printf("Moves: %d\n", g->player.moves);
 	g->player.pos.x = x;
 	g->player.pos.y = y;
-	g->player.moves++;
 }
 
 void	move_event(t_game *g, int x, int y)
@@ -65,5 +68,7 @@ void	move_player(t_game *g, int key)
 		tx++;
 	if (key == 'd')
 		ty++;
+	if (key == 65307)
+		on_destroy(g);
 	move_event(g, tx, ty);
 }

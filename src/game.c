@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/03/10 23:53:05 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/03/11 13:19:12 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	display_info(t_game g)
 	char	*num2;
 
 	num1 = ft_itoa(g.player.collected);
-	num2 = ft_itoa(g.player.moves - 1);
+	num2 = ft_itoa(g.player.moves);
 	s = str_adds(NULL, "Moves: ", 7);
 	s = str_adds(s, num2, ft_strlen(num2));
 	mlx_string_put(g.mlx, g.win, 10, 10, trgb(255, 255, 255, 255), s);

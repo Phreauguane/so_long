@@ -49,7 +49,7 @@ all: $(NAME)
 
 lib:
 	@echo "\033[0;33m\nCOMPILING $(LIBFT_PATH)"
-	@make -C $(LIBFT_PATH)
+	@make -sC $(LIBFT_PATH)
 	@echo "\033[1;32m$(LIBFT_FILE) created"
 
 valgrind: lib mlx $(OBJ)
@@ -59,8 +59,9 @@ valgrind: lib mlx $(OBJ)
 
 mlx:
 	@echo "\033[0;33m\nCOMPILING $(MLX_PATH)..."
-	@make -sC $(MLX_PATH)
+	@make -sC $(MLX_PATH) >> .logs 2>> .logs
 	@echo "\033[1;32m$(MLX_FILE) created"
+	@rm .logs
 
 $(NAME): lib mlx $(OBJ)
 	@echo "\033[0;33m\nCOMPILING SO_LONG..."
@@ -69,18 +70,20 @@ $(NAME): lib mlx $(OBJ)
 
 clean:
 	@echo "\033[0;31mDeleting Obj file in $(MLX_PATH)..."
-	@make clean -sC $(MLX_PATH)
+	@make clean -sC $(MLX_PATH) >> .logs 2>> .logs
+	@echo "\033[1;32mDone"
 	@echo "\033[0;31mDeleting Obj file in $(LIBFT_PATH)..."
 	@make clean -sC $(LIBFT_PATH)
 	@echo "\033[1;32mDone"
 	@echo "\033[0;31mDeleting Obj file in ./src/..."
 	@rm -f $(OBJ)
+	@rm .logs
 	@echo "\033[1;32mDone"
 
 fclean: clean
 	@echo "\033[0;31mDeleting so_long executable..."
 	@rm -f $(NAME)
-	@make fclean -C $(LIBFT_PATH)
+	@make fclean -sC $(LIBFT_PATH)
 	@echo "\033[1;32mDone"
 
 re: fclean all
