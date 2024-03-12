@@ -6,7 +6,7 @@
 /*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 23:30:49 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/03/12 13:59:44 by larz             ###   ########.fr       */
+/*   Updated: 2024/03/12 14:11:39 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <math.h>
 
 /*============= MACROS =============*/
+# define MAP_CHARS "10PCEM"
 # define FLOOR_XPM "textures/floor.xpm"
 # define WALL_XPM "textures/wall.xpm"
 # define PLAYER_XPM "textures/player.xpm"

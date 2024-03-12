@@ -6,7 +6,7 @@
 /*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:31:41 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/03/12 13:59:19 by larz             ###   ########.fr       */
+/*   Updated: 2024/03/12 14:14:42 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,25 @@ void	verif_closed(t_map *map)
 	}
 }
 
+void	verif_chars(t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (map->valid && y < map->size.y)
+	{
+		x = 0;
+		while (map->valid && x < map->size.x)
+		{
+			if (strchr(MAP_CHARS, map->data[y][x]) == NULL)
+				map->valid = 0;
+			x++;
+		}
+		y++;
+	}
+}
+
 int	verif_fd(int fd, t_game *g)
 {
 	if (fd < 1)
@@ -96,13 +115,5 @@ void	init_map(char *file, t_game *g, t_map *map)
 	map->size.x = x - 1;
 	verif_map(map);
 	verif_closed(map);
-}
-
-void	print_map(t_map map)
-{
-	int	i;
-
-	i = 0;
-	while (i < map.size.y)
-		ft_printf("%s", map.data[i++]);
+	verif_chars(map);
 }
