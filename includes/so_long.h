@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 23:30:49 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/03/10 23:42:43 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/03/12 13:59:44 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	init_game(t_game *game, char *file);
 int		on_destroy(t_game *game);
 
 /*	MAP.C			*/
-void	init_map(char *file, t_map *map);
+void	init_map(char *file, t_game *g, t_map *map);
 void	print_map(t_map map);
 
 /*	VERIF_MAP.C		*/

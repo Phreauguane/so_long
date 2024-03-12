@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:31:41 by jde-meo           #+#    #+#             */
-/*   Updated: 2023/11/22 16:44:11 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/03/12 13:59:19 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,14 @@ void	verif_closed(t_map *map)
 	}
 }
 
-void	init_map(char *file, t_map *map)
+int	verif_fd(int fd, t_game *g)
+{
+	if (fd < 1)
+		exit_handler("Invalid file", NULL, g);
+	return (fd);
+}
+
+void	init_map(char *file, t_game *g, t_map *map)
 {
 	int		y;
 	int		x;
@@ -71,10 +78,10 @@ void	init_map(char *file, t_map *map)
 
 	y = 0;
 	x = 0;
+	fd = verif_fd(open(file, O_RDONLY), g);
 	map->size.y = count_lines(file);
 	map->data = malloc(sizeof(char *) * (map->size.y + 1));
 	map->buff = malloc(sizeof(char *) * (map->size.y + 1));
-	fd = open(file, O_RDONLY);
 	while (y <= map->size.y)
 	{
 		map->data[y] = get_next_line(fd);

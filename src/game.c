@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: larz <larz@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:37:08 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/03/11 13:19:12 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/03/12 14:00:04 by larz             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	loop(t_game *game)
 
 void	init_game(t_game *game, char *file)
 {
-	init_map(file, &(game->map));
+	init_map(file, game, &(game->map));
 	if (!game->map.valid)
 		exit_handler("Map is invalid", NULL, game);
 	init_plr(game);
