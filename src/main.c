@@ -6,7 +6,7 @@
 /*   By: jde-meo <jde-meo@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:39:43 by jde-meo           #+#    #+#             */
-/*   Updated: 2024/03/11 14:36:40 by jde-meo          ###   ########.fr       */
+/*   Updated: 2024/03/12 12:09:26 by jde-meo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	verif_input(int ac, char **av)
 {
 	int	i;
-	
+
 	if (ac != 2 || !av[1])
 		exit_handler("Wrong arguments", NULL, NULL);
 	i = ft_strlen(av[1]);
